@@ -9,10 +9,10 @@ const serviceAccount = require("./serviceKey.json");
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
-// {
-//   origin:["http://localhost:5173"]
-// }
+app.use(cors({
+  origin:["http://localhost:5173"]
+}));
+
 app.use(express.json());
 
 // Firebase Admin SDK init
@@ -47,9 +47,6 @@ const verifyToken = async (req, res, next) => {
     res.status(401).send({ message: "Unauthorized access. Invalid token." });
   }
 };
-
-
-
 
 
 
@@ -184,7 +181,19 @@ app.get("/my-properties", async (req, res) => {
     //  Search homes by property name or location
 
 
-    
+    app.get("/search", async (req, res) => {
+      const search = req.query.search || "";
+      const result = await homeCollection
+        .find({
+          $or: [
+            { propertyName: { $regex: search, $options: "i" } },
+            { location: { $regex: search, $options: "i" } },
+          ],
+        })
+        .toArray();
+      res.send(result);
+    });
+
 
 
     console.log(" Connected to MongoDB successfully!");
