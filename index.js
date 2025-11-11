@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-  origin:["http://localhost:5173"]
+  // origin:["http://localhost:5173"]
 }));
 
 app.use(express.json());
@@ -51,8 +51,6 @@ const verifyToken = async (req, res, next) => {
 
 
 
-async function run() {
-  try {
 
     const db = client.db("home-db");
     const homeCollection = db.collection("homes");
@@ -195,13 +193,6 @@ app.get("/my-properties", async (req, res) => {
     });
 
 
-
-    console.log(" Connected to MongoDB successfully!");
-  } catch (error) {
-    console.error("MongoDB connection error:", error);
-  }
-}
-run().catch(console.dir);
 
 
 
