@@ -176,6 +176,8 @@ app.get("/my-properties", async (req, res) => {
       res.send(result);
     });
 
+    
+
     //  Search homes by property name or location
 
 
