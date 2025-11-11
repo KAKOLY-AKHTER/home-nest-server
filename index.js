@@ -184,19 +184,7 @@ app.get("/my-properties", async (req, res) => {
     //  Search homes by property name or location
 
 
-    app.get("/search", async (req, res) => {
-      const search = req.query.q || "";
-      const result = await homeCollection
-        .find({
-          $or: [
-            { propertyName: { $regex: search, $options: "i" } },
-            { location: { $regex: search, $options: "i" } },
-          ],
-        })
-        .toArray();
-      res.send(result);
-    });
-
+    
 
 
     console.log(" Connected to MongoDB successfully!");
