@@ -60,7 +60,6 @@ const verifyToken = async (req, res, next) => {
     app.get("/homes", async (req, res) => {
       const result = await homeCollection.find().toArray();
       console.log(result);
-      
       res.send(result);
     });
 
@@ -72,7 +71,7 @@ const verifyToken = async (req, res, next) => {
     });
 
     //  Add new home
-    app.post("/homes", async (req, res) => {
+    app.post("/homes",verifyToken, async (req, res) => {
       const data = req.body;
       data.createdAt = new Date();
       const result = await homeCollection.insertOne(data);
@@ -147,7 +146,7 @@ app.get("/my-properties", async (req, res) => {
 });
 
     //  Update home
-    app.put("/homes/:id", async (req, res) => {
+    app.put("/homes/:id",verifyToken, async (req, res) => {
       const { id } = req.params;
       const updateData = req.body;
       const result = await homeCollection.updateOne(
@@ -158,7 +157,7 @@ app.get("/my-properties", async (req, res) => {
     });
 
     //  Delete home
-    app.delete("/homes/:id", async (req, res) => {
+    app.delete("/homes/:id",verifyToken, async (req, res) => {
       const { id } = req.params;
       const result = await homeCollection.deleteOne({ _id: new ObjectId(id) });
       res.send({ success: true, result });
