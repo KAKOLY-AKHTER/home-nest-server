@@ -12,22 +12,22 @@ This is the backend server for **HomeNest**, a real estate listing platform wher
 
 ## 🚀 Features
 
-- 🔐 Firebase Admin SDK for secure token verification
-- 🏡 CRUD operations for property listings
-- ⭐ Ratings and Reviews system
-- 🔍 Search and Sort functionality
-- 📦 MongoDB integration
-- ⚙️ Protected routes for sensitive operations
+- 🔐 Firebase Admin SDK for secure token verification  
+- 🏡 CRUD operations for property listings  
+- ⭐ Ratings and Reviews system  
+- 🔍 Search and Sort functionality  
+- 📦 MongoDB integration  
+- ⚙️ Protected routes for sensitive operations  
 
 ---
 
 ## 🧪 Technologies Used
 
-- Express.js
-- MongoDB (native driver)
-- Firebase Admin SDK
-- dotenv
-- CORS
+- Express.js  
+- MongoDB (native driver)  
+- Firebase Admin SDK  
+- dotenv  
+- CORS  
 
 ---
 
@@ -45,6 +45,7 @@ This is the backend server for **HomeNest**, a real estate listing platform wher
 | `GET` | `/my-properties?email=` | Get properties by user email |
 | `GET` | `/latest-homes` | Get 6 latest properties |
 | `GET` | `/search?search=` | Search by property name or location |
+| `GET` | `/sorted-properties?sort=&order=` | Sort properties by price or date |
 
 ### ⭐ Ratings
 
@@ -66,3 +67,4 @@ This is the backend server for **HomeNest**, a real estate listing platform wher
 
 ```bash
 node index.js
+
