@@ -195,6 +195,15 @@ app.get("/my-properties", async (req, res) => {
 
 
 
+app.get("/sorted-properties", async (req, res) => {
+  const sortField = req.query.sort || "createdAt"; // e.g. "price"
+  const sortOrder = req.query.order === "asc" ? 1 : -1;
+
+  const result = await homeCollection.find().sort({ [sortField]: sortOrder }).toArray();
+  res.send(result);
+});
+
+
 
 
 // Default route
