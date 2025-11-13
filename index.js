@@ -163,13 +163,13 @@ app.get("/my-properties", async (req, res) => {
       res.send({ success: true, result });
     });
 
-    //  Get latest 6 homes (sorted by createdAt desc)
+    //  Get latest 6 homes 
 
  
     app.get("/latest-homes", async (req, res) => {
       const result = await homeCollection
         .find()
-        .sort({ createdAt: -1 }) // newest first
+        .sort({ createdAt: -1 }) 
         .limit(6)
         .toArray();
       res.send(result);
@@ -177,7 +177,7 @@ app.get("/my-properties", async (req, res) => {
 
     
 
-    //  Search homes by property name or location
+    //  Search homes
 
 
     app.get("/search", async (req, res) => {
@@ -196,7 +196,7 @@ app.get("/my-properties", async (req, res) => {
 
 
 app.get("/sorted-properties", async (req, res) => {
-  const sortField = req.query.sort || "createdAt"; // e.g. "price"
+  const sortField = req.query.sort || "createdAt"; 
   const sortOrder = req.query.order === "asc" ? 1 : -1;
 
   const result = await homeCollection.find().sort({ [sortField]: sortOrder }).toArray();
